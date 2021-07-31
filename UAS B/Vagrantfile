@@ -5,17 +5,17 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.define "Master" do |web01|
+  config.vm.define "MasterReplication" do |web01|
     web01.vm.box = "ubuntu/bionic64"
-    web01.vm.hostname = "Master"
+    web01.vm.hostname = "MasterReplication"
     web01.vm.network :private_network, ip: "10.11.11.31"
-    web01.vm.provision "shell", path: "replication1.sh"
+    web01.vm.provision "shell", path: "MasterReplication1.sh"
   end
 
-  config.vm.define "Slave" do |web02|
+  config.vm.define "SlaveReplication" do |web02|
     web02.vm.box = "ubuntu/bionic64"
-    web02.vm.hostname = "Slave"
+    web02.vm.hostname = "SlaveReplication"
     web02.vm.network :private_network, ip: "10.11.11.32"
-    web02.vm.provision "shell", path: "replication2.sh"
+    web02.vm.provision "shell", path: "SlaveReplication.sh"
   end
 end
